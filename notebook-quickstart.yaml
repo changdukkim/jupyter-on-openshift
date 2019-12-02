@@ -53,6 +53,8 @@ objects:
       app: ${APPLICATION_NAME}
     name: ${APPLICATION_NAME}
   spec:
+    nodeSelector:
+      gpu: enabled
     replicas: 1
     selector:
       app: ${APPLICATION_NAME}
@@ -80,6 +82,12 @@ objects:
           resources:
             limits:
               memory: ${NOTEBOOK_MEMORY}
+          securityContext:
+           privileged: true
+           capabilities:
+             drop: ["ALL"]
+           seLinuxOptions:
+             type: nvidia_container_t
     triggers:
     - type: ConfigChange
     - imageChangeParams:

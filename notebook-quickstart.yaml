@@ -80,6 +80,12 @@ objects:
           resources:
             limits:
               memory: ${NOTEBOOK_MEMORY}
+          securityContext:
+           privileged: true
+           capabilities:
+             drop: ["ALL"]
+           seLinuxOptions:
+             type: nvidia_container_t
     triggers:
     - type: ConfigChange
     - imageChangeParams:

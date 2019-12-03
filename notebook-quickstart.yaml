@@ -65,6 +65,8 @@ objects:
           app: ${APPLICATION_NAME}
           deploymentconfig: ${APPLICATION_NAME}
       spec:
+        nodeSelector:
+          openshift.com/gpu-accelerator: true
         automountServiceAccountToken: false
         containers:
         - env:
@@ -72,6 +74,10 @@ objects:
             value: ${NOTEBOOK_PASSWORD}
           - name: JUPYTER_NOTEBOOK_INTERFACE
             value: ${NOTEBOOK_INTERFACE}
+          - name: CUDA_VISIBLE_DEVICES
+            value: all
+          - name: NVIDIA_DRIVER_CAPABILITIES
+            value: "compute,utility"
           image: ${APPLICATION_NAME}:latest
           name: notebook
           ports:

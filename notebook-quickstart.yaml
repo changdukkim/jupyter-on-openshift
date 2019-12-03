@@ -155,3 +155,4 @@ parameters:
   required: true
   value: master
 - name: CONTEXT_DIR
+  value: /

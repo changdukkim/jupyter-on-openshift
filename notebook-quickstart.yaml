@@ -66,7 +66,7 @@ objects:
           deploymentconfig: ${APPLICATION_NAME}
       spec:
         nodeSelector:
-          openshift.com/gpu-accelerator: true
+          gpu: enabled
         automountServiceAccountToken: false
         containers:
         - env:
